@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang SkillBridge</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #eaf1ff;
+      color: #1a1f36;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 10px;
+      z-index: 9999;
+      background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+      border-radius: 20px;
+      padding: 12px 30px;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      margin: 0 8px;
+      position: relative;
+      transition: 0.3s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: #fff;
+      transition: 0.3s;
+    }
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+    .btn-login {
+      background: #fff;
+      color: #2563eb !important;
+      border-radius: 12px;
+      padding: 8px 22px;
+      font-weight: 600;
+      transition: 0.3s;
+      margin-left: 15px; /* ini yg bikin rapet ke menu */
+    }
+    .btn-login:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+    .navbar-collapse {
+      justify-content: flex-end; /* dorong menu ke kanan */
+    }
+
+    /* ABOUT SECTION */
+    .badge-about {
+      background: #e0e9ff;
+      color: #2563eb;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .about-title {
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 1.3;
+    }
+    .about-desc {
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* FEATURE CARD */
+    .feature-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      transition: 0.3s;
+      height: 100%;
+    }
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+    }
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: #e0e9ff;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: #2563eb;
+    }
+    .feature-card h4 {
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .feature-card p {
+      color: #64748b;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+      border-radius: 25px 25px 0 0;
+      color: #fff;
+      padding: 60px 40px 20px;
+      margin-top: 80px;
+    }
+    .footer h5 {
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .footer p, .footer a {
+      color: #dbeafe;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .footer a:hover {
+      color: #fff;
+    }
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      transition: 0.3s;
+    }
+    .social-icon:hover {
+      background: #fff;
+      color: #2563eb;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 20px;
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .navbar-collapse {
+        justify-content: flex-start;
+        margin-top: 15px;
+      }
+      .btn-login {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+      }
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 10px 20px;
+      }
+      .about-title {
+        font-size: 1.8rem;
+      }
+      .footer {
+        padding: 40px 25px 20px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">SkillBridge</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <i class="fas fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav align-items-lg-center"> <!-- hapus mx-auto -->
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="FINAL_ABOUT.html">About</a></li>
+          <li class="nav-item"><a href="FINAL_LOGIN.html" class="btn btn-login">Login</a></li> <!-- Login masuk ke dalam ul -->
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ABOUT SECTION -->
+    <section class="text-center py-5">
+      <span class="badge-about">Tentang SkillBridge</span>
+      <h2 class="about-title mt-3">Menjembatani Mahasiswa Menuju Dunia Profesional</h2>
+      <p class="about-desc mt-3">
+        SkillBridge adalah platform pencarian magang yang membantu mahasiswa menemukan peluang magang terbaik 
+        sesuai dengan kemampuan dan minat mereka. Platform ini hadir untuk menghubungkan mahasiswa dengan 
+        perusahaan yang membutuhkan talenta muda yang siap berkembang.
+      </p>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="row g-4 pb-5">
+      <div class="col-lg-3 col-md-6">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+          <h4>Apa Itu SkillBridge?</h4>
+          <p>SkillBridge merupakan platform digital yang dirancang untuk memudahkan mahasiswa mencari dan menemukan lowongan magang secara cepat, mudah, dan terpercaya.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          <h4>Permasalahan</h4>
+          <p>Banyak mahasiswa kesulitan menemukan informasi magang karena lowongan tersebar di berbagai platform dan tidak terorganisir dengan baik.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+          <h4>Tujuan</h4>
+          <p>Membantu mahasiswa memperoleh informasi magang secara terpusat dan membantu perusahaan menemukan kandidat magang yang sesuai dengan kebutuhan mereka.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+          <h4>Manfaat</h4>
+          <p>Memberikan kemudahan dalam mencari peluang magang, memperluas jaringan profesional, dan meningkatkan kesiapan mahasiswa memasuki dunia kerja.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h5>SkillBridge</h5>
+          <p>Platform pencarian magang yang membantu mahasiswa menemukan peluang terbaik untuk mengembangkan pengalaman dan karier profesional.</p>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h5>Kontak</h5>
+          <p><i class="fas fa-envelope me-2"></i>info@skillbridge.com</p>
+          <p><i class="fas fa-phone me-2"></i>+62 812-3456-7890</p>
+          <p><i class="fas fa-location-dot me-2"></i>Yogyakarta, Indonesia</p>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <h5>Ikuti Kami</h5>
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/_karmelita.i?igsh=enQ3a2M5dzdvcDhl" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 SkillBridge. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+window.addEventListener('scroll', function () {
+  const navbar=document.querySelector('.navbar');
+  if(window.scrollY>50){
+    navbar.style.padding="8px 30px";
+    navbar.style.boxShadow="0 8px 25px rgba(47,74,161,0.5)";
+  }else{
+    navbar.style.padding="12px 30px";
+    navbar.style.boxShadow="0 8px 25px rgba(47,74,161,0.3)";
+  }
+});
+</script>
+</body>
+</html>

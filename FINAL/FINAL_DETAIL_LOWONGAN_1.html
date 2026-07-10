@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Lowongan - SkillBridge</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #eaf1ff;
+      overflow-x: hidden;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 260px;
+      background: linear-gradient(180deg, #1e3a8a 0%, #2563eb 100%);
+      padding: 25px 20px;
+      transition: 0.3s;
+      z-index: 1000;
+      box-shadow: 4px 0 20px rgba(37, 99, 235, 0.2);
+    }
+    .sidebar-brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar-menu li a {
+      display: flex;
+      align-items: center;
+      color: rgba(255,255,255,0.85);
+      padding: 12px 18px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .sidebar-menu li a i {
+      width: 25px;
+      font-size: 1.1rem;
+    }
+    .sidebar-menu li a:hover, .sidebar-menu li a.active {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    .sidebar-menu li a.logout {
+      color: #fecaca;
+      position: absolute;
+      bottom: 25px;
+      width: calc(100% - 40px);
+    }
+    .sidebar-menu li a.logout:hover {
+      background: rgba(239,68,68,0.2);
+      color: #fff;
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      margin-left: 260px;
+      padding: 30px;
+      transition: 0.3s;
+    }
+    .btn-back {
+      color: #64748b;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-back:hover {
+      color: #2563eb;
+    }
+
+    /* DETAIL CARD */
+    .detail-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    .company-logo {
+      width: 60px;
+      height: 60px;
+      background: #eaf1ff;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+      font-size: 1.8rem;
+    }
+    .job-title {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #1a1f36;
+      margin-bottom: 5px;
+    }
+    .company-name {
+      color: #64748b;
+      font-size: 1rem;
+    }
+    .badge-info {
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    .badge-location { background: #f1f5f9; color: #475569; }
+    .badge-remote { background: #dbeafe; color: #2563eb; }
+    .badge-salary { background: #dcfce7; color: #16a34a; }
+
+    .section-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #1a1f36;
+      margin-bottom: 15px;
+      padding-left: 12px;
+      border-left: 4px solid #2563eb;
+    }
+    .section-content {
+      color: #475569;
+      line-height: 1.8;
+    }
+    .section-content ul {
+      padding-left: 20px;
+    }
+    .section-content li {
+      margin-bottom: 8px;
+    }
+
+    /* SIDEBAR KAN */
+    .deadline-card {
+      background: #fef2f2;
+      border: 1.5px solid #fee2e2;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .deadline-label {
+      color: #ef4444;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+    .deadline-date {
+      color: #dc2626;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-top: 5px;
+    }
+    .btn-apply {
+      background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 10px;
+      transition: 0.3s;
+    }
+    .btn-apply:hover {
+      transform: translateY(-2px);
+    }
+    .btn-save {
+      background: #fff;
+      color: #64748b;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      font-weight: 600;
+      padding: 12px;
+      width: 100%;
+      transition: 0.3s;
+    }
+    .btn-save:hover {
+      background: #f1f5f9;
+    }
+
+    /* TOGGLE BUTTON MOBILE */
+    .toggle-btn {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1100;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .sidebar {
+        left: -260px;
+      }
+      .sidebar.active {
+        left: 0;
+      }
+      .main-content {
+        margin-left: 0;
+      }
+      .toggle-btn {
+        display: block;
+      }
+    }
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 20px 15px;
+      }
+      .detail-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOGGLE BUTTON MOBILE -->
+  <button class="toggle-btn" id="toggleSidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-brand">SkillBridge</div>
+    <ul class="sidebar-menu">
+      <li><a href="FINAL_DASBOARD.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+      <li><a href="FINAL_PROFIL.html"><i class="fas fa-user"></i> Profil</a></li>
+      <li><a href="FINAL_CARI_LOWONGAN.html" class="active"><i class="fas fa-search"></i> Cari Lowongan</a></li>
+      <li><a href="FINAL_BOOKMARK.html"><i class="fas fa-bookmark"></i> Bookmark</a></li>
+      <li><a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <a href="FINAL_CARI_LOWONGAN.html" class="btn-back"><i class="fas fa-arrow-left me-2"></i> Kembali</a>
+
+    <div class="detail-card">
+      <div class="row">
+        <!-- KOLOM KIRI -->
+        <div class="col-lg-8">
+          <div class="d-flex mb-4">
+            <div class="company-logo me-3">
+              <i class="fas fa-building"></i>
+            </div>
+            <div>
+              <h2 class="job-title">Front-End Developer Intern</h2>
+              <p class="company-name">PT ABC Teknologi</p>
+              <div class="mt-2">
+                <span class="badge-info badge-location"><i class="fas fa-location-dot me-1"></i> Yogyakarta</span>
+                <span class="badge-info badge-remote"><i class="fas fa-laptop-house me-1"></i> Remote</span>
+                <span class="badge-info badge-salary"><i class="fas fa-money-bill-wave me-1"></i> Rp3.000.000 / bulan</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DESKRIPSI -->
+          <div class="mb-4">
+            <h5 class="section-title">Deskripsi</h5>
+            <p class="section-content">
+              Kami membuka kesempatan bagi mahasiswa maupun fresh graduate yang ingin mengembangkan kemampuan sebagai Front-End Developer. 
+              Selama program magang, kamu akan belajar membangun antarmuka website yang responsif, mengimplementasikan desain menjadi kode, 
+              serta berkolaborasi dengan tim pengembang dalam mengerjakan proyek nyata.
+            </p>
+          </div>
+
+          <!-- PERSYARATAN -->
+          <div class="mb-4">
+            <h5 class="section-title">Persyaratan</h5>
+            <ul class="section-content">
+              <li>Menguasai HTML, CSS, JavaScript</li>
+              <li>Menguasai React JS</li>
+              <li>Memahami Git</li>
+              <li>Mampu bekerja dalam tim</li>
+            </ul>
+          </div>
+
+          <!-- BENEFIT -->
+          <div>
+            <h5 class="section-title">Benefit</h5>
+            <ul class="section-content">
+              <li>Sertifikat Magang Resmi</li>
+              <li>Uang Transportasi / Insentif Bulanan</li>
+              <li>Flexible Working Hours (Waktu Kerja Fleksibel)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- KOLOM KAN -->
+        <div class="col-lg-4">
+          <div class="deadline-card">
+            <div class="deadline-label">DEADLINE</div>
+            <div class="deadline-date">30 Juni 2026</div>
+          </div>
+          <a class="btn btn-apply" id="btnApply" href="FINAL_FROM_LAMARAN.html"><i class="fas fa-paper-plane me-2"></i> Lamar Sekarang</a>
+          <button class="btn btn-save" id="btnSave"><i class="far fa-bookmark me-2"></i> Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 1. TOGGLE SIDEBAR MOBILE
+    document.getElementById('toggleSidebar').addEventListener('click', function() {
+      document.getElementById('sidebar').classList.toggle('active');
+    });
+
+    // 3. TOMBOL SIMPAN
+    let isSaved = false;
+    document.getElementById('btnSave').addEventListener('click', function() {
+      isSaved = !isSaved;
+      if(isSaved) {
+        this.innerHTML = '<i class="fas fa-bookmark me-2"></i> Tersimpan';
+        this.style.background = '#eaf1ff';
+        this.style.color = '#2563eb';
+        this.style.borderColor = '#2563eb';
+      } else {
+        this.innerHTML = '<i class="far fa-bookmark me-2"></i> Simpan';
+        this.style.background = '#fff';
+        this.style.color = '#64748b';
+        this.style.borderColor = '#cbd5e1';
+      }
+    });
+  </script>
+</body>
+</html>
