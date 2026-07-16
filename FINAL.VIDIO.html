@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Pembelajaran - SkillBridge</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #eaf1ff;
+      overflow-x: hidden;
+    }
+    /* SIDEBAR SAMA KAYAK DASHBOARD */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 260px;
+      background: linear-gradient(180deg, #1e3a8a 0%, #2563eb 100%);
+      padding: 25px 20px;
+      transition: 0.3s;
+      z-index: 1000;
+      box-shadow: 4px 0 20px rgba(37, 99, 235, 0.2);
+    }
+    .sidebar-brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar-menu li a {
+      display: flex;
+      align-items: center;
+      color: rgba(255,255,255,0.85);
+      padding: 12px 18px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .sidebar-menu li a i {
+      width: 25px;
+      font-size: 1.1rem;
+    }
+    .sidebar-menu li a:hover, .sidebar-menu li a.active {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    .sidebar-menu li a.logout {
+      color: #fecaca;
+      position: absolute;
+      bottom: 25px;
+      width: calc(100% - 40px);
+    }
+    .sidebar-menu li a.logout:hover {
+      background: rgba(239,68,68,0.2);
+      color: #fff;
+    }
+
+    /* MAIN */
+   .main-content { margin-left: 260px; padding: 30px; transition: 0.3s; }
+   .page-title h2 { font-weight: 700; color: #1a1f36; }
+   .page-title p { color: #64748b; }
+
+    /* VIDEO CARD */
+   .video-card {
+      background: #fff; border-radius: 20px; padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: 0.3s;
+      height: 100%;
+    }
+   .video-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15); }
+   .video-thumbnail { position: relative; border-radius: 15px; overflow: hidden; cursor: pointer; }
+   .video-thumbnail img { width: 100%; height: 180px; object-fit: cover; }
+   .play-icon {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: rgba(37, 99, 235, 0.9); width: 50px; height: 50px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.2rem; transition: 0.3s;
+    }
+   .video-thumbnail:hover .play-icon { background: #1e3a8a; transform: translate(-50%, -50%) scale(1.1); }
+   .video-title { font-weight: 600; color: #1a1f36; margin-top: 15px; font-size: 1rem; }
+   .video-meta { font-size: 0.85rem; color: #64748b; }
+   .badge-kategori { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; }
+
+    /* FILTER BUTTON */
+   .filter-btn { border-radius: 20px; padding: 8px 20px; font-weight: 500; }
+   .filter-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+    /* MODAL VIDEO */
+   .modal-content { border-radius: 20px; border: none; }
+   .modal-body { padding: 0; }
+   .ratio { border-radius: 20px; overflow: hidden; }
+
+    /* TOGGLE */
+   .toggle-btn {
+      display: none; position: fixed; top: 20px; left: 20px; z-index: 1100;
+      background: #2563eb; color: #fff; border: none; border-radius: 10px;
+      padding: 10px 14px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+   .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
+   .overlay.active { display: block; }
+
+    @media (max-width: 992px) {
+     .sidebar { left: -260px; }
+     .sidebar.active { left: 0; }
+     .main-content { margin-left: 0; }
+     .toggle-btn { display: block; }
+    }
+    @media (max-width: 768px) {.main-content { padding: 20px 15px; } }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-btn" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-brand">SkillBridge</div>
+    <ul class="sidebar-menu">
+      <li><a href="FINAL_DASBOARD.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+      <li><a href="FINAL_PROFIL.html"><i class="fas fa-user"></i> Profil</a></li>
+      <li><a href="FINAL_CARI_LOWONGAN.html"><i class="fas fa-search"></i> Cari Lowongan</a></li>
+      <li><a href="FINAL_TABELLAMARAN.html"><i class="fas fa-table"></i> Tabel Lamaran</a></li>
+      <li><a href="FINAL.VIDIO.html" class="active"><i class="fas fa-play-circle"></i> Video Pembelajaran</a></li>
+      <li><a href="FINAL_BOOKMARK.html"><i class="fas fa-bookmark"></i> Bookmark</a></li>
+      <li><a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="page-title mb-4">
+      <h2>Video Pembelajaran 🎥</h2>
+      <p>Tingkatkan skill kamu dengan video tips karir dari para expert</p>
+    </div>
+
+    <!-- FILTER KATEGORI -->
+    <div class="mb-4">
+      <button class="btn btn-outline-primary filter-btn active" data-filter="all">Semua</button>
+      <button class="btn btn-outline-primary filter-btn" data-filter="cv">CV & Resume</button>
+      <button class="btn btn-outline-primary filter-btn" data-filter="interview">Interview</button>
+      <button class="btn btn-outline-primary filter-btn" data-filter="skill">Skill Kerja</button>
+    </div>
+
+    <!-- GRID VIDEO -->
+    <div class="row g-4" id="videoGrid">
+      <!-- Data diisi JS -->
+    </div>
+  </div>
+
+  <!-- MODAL VIDEO -->
+  <div class="modal fade" id="videoModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="modalTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="ratio ratio-16x9">
+            <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // DATA VIDEO DUMMY - GANTI LINK YOUTUBE KAMU
+    const dataVideo = [
+      {
+        id: 1,
+        title: "Cara Bikin CV ATS Friendly Agar Lolos HRD",
+        kategori: "cv",
+        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+        videoId: "dQw4w9WgXcQ",
+        durasi: "12:34",
+        views: "15.2K"
+      },
+      {
+        id: 2,
+        title: "10 Pertanyaan Interview Kerja & Jawaban Terbaik",
+        kategori: "interview",
+        thumbnail: "https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
+        videoId: "kJQP7kiw5Fk",
+        durasi: "18:20",
+        views: "23.5K"
+      },
+      {
+        id: 3,
+        title: "Skill Digital Marketing Yang Dicari Perusahaan 2026",
+        kategori: "skill",
+        thumbnail: "https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg",
+        videoId: "9bZkp7q19f0",
+        durasi: "25:10",
+        views: "8.7K"
+      },
+      {
+        id: 4,
+        title: "Tips Negosiasi Gaji Pertama Kali Kerja",
+        kategori: "interview",
+        thumbnail: "https://img.youtube.com/vi/L0MK7qz13bU/maxresdefault.jpg",
+        videoId: "L0MK7qz13bU",
+        durasi: "15:45",
+        views: "12.1K"
+      },
+      {
+        id: 5,
+        title: "Cara Membuat Portfolio Untuk Fresh Graduate",
+        kategori: "cv",
+        thumbnail: "https://img.youtube.com/vi/2Vv-BfVoq4g/maxresdefault.jpg",
+        videoId: "2Vv-BfVoq4g",
+        durasi: "20:30",
+        views: "9.3K"
+      },
+      {
+        id: 6,
+        title: "Belajar Excel Dasar untuk Dunia Kerja",
+        kategori: "skill",
+        thumbnail: "https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg",
+        videoId: "jNQXAC9IVRw",
+        durasi: "30:15",
+        views: "45.6K"
+      }
+    ];
+
+    const videoGrid = document.getElementById('videoGrid');
+    const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+    const videoFrame = document.getElementById('videoFrame');
+    const modalTitle = document.getElementById('modalTitle');
+
+    // RENDER VIDEO
+    function renderVideo(filter = 'all') {
+      videoGrid.innerHTML = '';
+      const filtered = filter === 'all'? dataVideo : dataVideo.filter(v => v.kategori === filter);
+
+      filtered.forEach(video => {
+        let badgeColor = '';
+        let badgeText = '';
+        if(video.kategori === 'cv') {badgeColor = 'bg-purple'; badgeText = 'CV & Resume';}
+        if(video.kategori === 'interview') {badgeColor = 'bg-success'; badgeText = 'Interview';}
+        if(video.kategori === 'skill') {badgeColor = 'bg-warning text-dark'; badgeText = 'Skill Kerja';}
+
+        const card = `
+          <div class="col-lg-4 col-md-6">
+            <div class="video-card" onclick="playVideo('${video.videoId}', '${video.title}')">
+              <div class="video-thumbnail">
+                <img src="${video.thumbnail}" alt="${video.title}">
+                <div class="play-icon"><i class="fas fa-play"></i></div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="badge ${badgeColor} badge-kategori">${badgeText}</span>
+                <small class="video-meta"><i class="fas fa-clock me-1"></i>${video.durasi}</small>
+              </div>
+              <h6 class="video-title">${video.title}</h6>
+              <small class="video-meta"><i class="fas fa-eye me-1"></i>${video.views} views</small>
+            </div>
+          </div>
+        `;
+        videoGrid.innerHTML += card;
+      });
+    }
+
+    // PLAY VIDEO
+    function playVideo(videoId, title) {
+      modalTitle.innerText = title;
+      videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      modal.show();
+    }
+
+    // STOP VIDEO SAAT MODAL DITUTUP
+    document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+      videoFrame.src = '';
+    });
+
+    // FILTER BUTTON
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderVideo(this.dataset.filter);
+      });
+    });
+
+    // TOGGLE SIDEBAR
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const overlay = document.getElementById('overlay');
+    toggleBtn.addEventListener('click', () => { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); });
+    overlay.addEventListener('click', () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); });
+
+    // INIT
+    renderVideo();
+  </script>
+
+  <style>
+    .bg-purple { background-color: #7c3aed; color: #fff; }
+  </style>
+</body>
+</html>
