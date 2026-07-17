@@ -53,6 +53,7 @@
       transition: all 0.3s ease;
       margin-top: 20px;
     }
+    /* NGATUR FONT DI NAV */
     .navbar-brand {
       font-weight: 700;
       font-size: 1.6rem;
@@ -130,11 +131,13 @@
     .search-box button:hover {
       background: #254eda;
     }
+    /* NGATUR UKURAN FOTO */
     .hero-img {
       width: 100%;
       max-width: 350px;
       animation: float 3s ease-in-out infinite;
     }
+    /* ANIMASI */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
@@ -154,6 +157,7 @@
     .stat-card:hover {
       transform: translateY(-8px);
     }
+    /* ngatur ukuran */
     .stat-card i {
       font-size: 2.2rem;
       margin-bottom: 15px;
@@ -170,13 +174,54 @@
 
     
 /* FOOTER */
-.footer{background:linear-gradient(90deg,#1e3a8a 0%,#2563eb 100%);border-radius:25px 25px 0 0;color:#fff;padding:60px 40px 20px;margin-top:80px}
-.footer h5{font-weight:700;margin-bottom:20px}
-.footer p,.footer a{color:#dbeafe;text-decoration:none;font-size:.95rem}
-.footer a:hover{color:#fff}
-.social-icon{width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:10px;transition:.3s}
-.social-icon:hover{background:#fff;color:#2563eb}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.2);padding-top:20px;margin-top:40px;text-align:center;font-size:.9rem}
+    .footer
+    {
+      background:linear-gradient(90deg,#1e3a8a 0%,#2563eb 100%);
+      border-radius:25px 25px 0 0;
+      color:#fff;
+      padding:60px 40px 20px;
+      margin-top:80px
+    }
+    .footer h5
+    {
+      font-weight:700;
+      margin-bottom:20px
+    }
+    .footer p,.footer a
+    {
+      color:#dbeafe;
+      text-decoration:none;
+      font-size:.95rem
+    }
+    .footer a:hover
+    {
+      color:#006aff
+    }
+    .social-icon
+    {
+      width:40px;height:40px;
+      background:rgba(255,255,255,.15);
+      border-radius:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-right:10px;
+      transition:.3s
+    }
+    /* HOVER */
+    .social-icon:hover
+    {
+      background:#fff;
+      color:#2563eb
+    }
+    .footer-bottom
+    {
+      border-top:1px solid rgba(255,255,255,.2);
+      padding-top:20px;
+      margin-top:40px;
+      text-align:center;
+      font-size:.9rem
+    }
 
 
 /* RESPONSIVE NAV */
@@ -240,7 +285,7 @@
       </div>
     </section>
 
-    <!-- STATS -->
+    <!-- COUNTER STATIS -->
     <section class="row justify-content-center g-4">
       <div class="col-lg-3 col-md-4 col-10">
         <div class="stat-card">
@@ -255,6 +300,7 @@
           <h3 class="counter" data-target="2000">0</h3>
           <p>Mahasiswa</p>
         </div>
+        
       </div>
       <div class="col-lg-3 col-md-4 col-10">
         <div class="stat-card">
@@ -262,26 +308,52 @@
           <h3 class="counter" data-target="1000">0</h3>
           <p>Lowongan</p>
         </div>
+        
       </div>
+      <div class="col-lg-3 col-md-4 col-10">
+        <div class="stat-card">
+          <i class="fas fa-star text-warning"></i>
+          <h3 class="counter" data-target="200">0</h3>
+          <p>Kepuasan Pengguna</p>
+        </div>
     </section>
   </div>
 
   
-<footer class="footer"><div class="container"><div class="row g-4">
-<div class="col-lg-4 col-md-6"><h5>SkillBridge</h5><p>Platform pencarian magang yang membantu mahasiswa menemukan peluang terbaik untuk mengembangkan pengalaman dan karier profesional.</p></div>
-<div class="col-lg-4 col-md-6"><h5>Kontak</h5><p><i class="fas fa-envelope me-2"></i>info@skillbridge.com</p><p><i class="fas fa-phone me-2"></i>+62 812-3456-7890</p><p><i class="fas fa-location-dot me-2"></i>Yogyakarta, Indonesia</p></div>
-<div class="col-lg-4 col-md-12"><h5>Ikuti Kami</h5>
-<a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-<a href="https://www.instagram.com/_karmelita.i" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-<a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-</div></div><div class="footer-bottom">&copy; 2026 SkillBridge. All Rights Reserved.</div></div></footer>
+<footer class="footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <h5>SkillBridge</h5>
+        <p>Platform pencarian magang yang membantu 
+        mahasiswa menemukan peluang terbaik untuk 
+        mengembangkan pengalaman dan karier profesional.</p>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <h5>Kontak</h5>
+        <p><i class="fas fa-envelope me-2"></i>info@skillbridge.com</p>
+        <p><i class="fas fa-phone me-2"></i>+62 812-3456-7890</p>
+        <p><i class="fas fa-location-dot me-2"></i>Yogyakarta, Indonesia</p>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <h5>Ikuti Kami</h5>
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/_karmelita.i" target="_blank" class="social-icon">
+        <i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 SkillBridge. All Rights Reserved.
+  </div>
+</div>
+</footer>
 
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Efek navbar pas di scroll
+    // Efek navbar pas di scroll MENGECIL
     window.addEventListener('scroll', function () {
       const navbar = document.querySelector('.navbar');
       if (window.scrollY > 50) {
